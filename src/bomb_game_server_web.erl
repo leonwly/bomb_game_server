@@ -1,5 +1,5 @@
 %% @author Mochi Media <dev@mochimedia.com>
-%% @copyright 2010 Mochi Media <dev@mochimedia.com>
+%% @copyright 2010 feelform.net<feelform@gmail.com>
 
 %% @doc Web server for bomb_game_server.
 
@@ -26,6 +26,12 @@ loop(Req, DocRoot) ->
         case Req:get(method) of
             Method when Method =:= 'GET'; Method =:= 'HEAD' ->
                 case Path of
+		    "test/" ++ Id ->
+			Response = Req:ok({"text/html; charset=utf-8",
+					   [{"Server", "feelformServer"}],
+					   chunked}),
+			Response:write_chunk("welcome you!" ++ Id ++ "\n"),
+			feed(Response, Id, 1);
                     _ ->
                         Req:serve_file(Path, DocRoot)
                 end;
@@ -49,6 +55,14 @@ loop(Req, DocRoot) ->
                          "request failed, sorry\n"})
     end.
 
+feed(Response, Path, N) ->
+    receive
+    after 10000 ->
+	    Msg = io_lib:format("Chunk ~w for id ~s\n", [N, Path]),
+	    Response:write_chunk(Msg)
+	end,
+    feed(Response, Path, N+1).
+    
 %% Internal API
 
 get_option(Option, Options) ->
