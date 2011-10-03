@@ -1,0 +1,9 @@
+%% -*- erlang -*-
+{application, bomb_game_server,
+ [{description, "bomb_game_server"},
+  {vsn, "0.1"},
+  {modules, []},
+  {registered, []},
+  {mod, {'bomb_game_server_app', []}},
+  {env, []},
+  {applications, [kernel, stdlib, crypto]}]}.
