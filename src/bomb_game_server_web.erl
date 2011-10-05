@@ -26,12 +26,18 @@ loop(Req, DocRoot) ->
         case Req:get(method) of
             Method when Method =:= 'GET'; Method =:= 'HEAD' ->
                 case Path of
-		    "test/" ++ Id ->
+		    "reversedpush/" ++ Id ->
 			Response = Req:ok({"text/html; charset=utf-8",
 					   [{"Server", "feelformServer"}],
 					   chunked}),
 			Response:write_chunk("welcome you!" ++ Id ++ "\n"),
 			feed(Response, Id, 1);
+		    "makeRoom" ->
+			FistDigit = trunc(random:uniform() * 10),
+			SecondDigit = trunc(random:uniform() * 10),
+			ThirdDigit = trunc(random:uniform() * 10),
+			FourthDigit = trunc(random:uniform() * 10),
+			Req:respond({200, [{"Content-Type", "text/plain"}], io_lib:format("~p~p~p~p~n", [FistDigit, SecondDigit, ThirdDigit, FourthDigit])});
                     _ ->
                         Req:serve_file(Path, DocRoot)
                 end;
