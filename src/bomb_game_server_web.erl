@@ -4,7 +4,7 @@
 %% @doc Web server for bomb_game_server.
 
 -module(bomb_game_server_web).
--author("Mochi Media <dev@mochimedia.com>").
+-author("Yongseok Kang <feelform@gmail.com>").
 
 -export([start/1, stop/0, loop/2]).
 
