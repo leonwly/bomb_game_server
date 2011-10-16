@@ -9,8 +9,7 @@ Bomb Game Server is copyrighted LGPL v2.1.
   Make group and 4 digit group number
   
   result 4 digit integer
-  	 
-	 examples : 1234 (text/plain)
+  examples : 1234 (text/plain)
 
 === main server
 
