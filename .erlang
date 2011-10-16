@@ -1,2 +1,5 @@
 code:add_pathz("deps/em/ebin").
 code:add_pathz("deps/mochiweb/ebin").
+code:add_pathz("ebin").
+
+io:format("Running bomb server~n").

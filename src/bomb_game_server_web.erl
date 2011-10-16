@@ -37,7 +37,9 @@ loop(Req, DocRoot) ->
 			SecondDigit = trunc(random:uniform() * 10),
 			ThirdDigit = trunc(random:uniform() * 10),
 			FourthDigit = trunc(random:uniform() * 10),
-			Req:respond({200, [{"Content-Type", "text/plain"}], io_lib:format("~p~p~p~p~n", [FistDigit, SecondDigit, ThirdDigit, FourthDigit])});
+			Digit = io_lib:format("~p~p~p~p~n", [FistDigit, SecondDigit, ThirdDigit, FourthDigit]),
+			chat_server ! {"feelform", Digit, "느림보"},
+			Req:respond({200, [{"Content-Type", "text/plain"}], Digit});
                     _ ->
                         Req:serve_file(Path, DocRoot)
                 end;
