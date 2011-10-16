@@ -5,9 +5,9 @@ Bomb Game Server is copyrighted LGPL v2.1.
 
 === API Document
 * /makeRoom 
-** Make group and 4 digit group number
-** result 4 digit integer
-** examples : 1234 (text/plain)
+  Make group and 4 digit group number
+  result 4 digit integer
+  	 examples : 1234 (text/plain)
 
 === main server
 
